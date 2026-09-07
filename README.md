@@ -23,3 +23,26 @@ curl localhost:3000/health
 - docker-compose.yml - Web + DB with healthcheck
 - app.js - Express app with /health endpoint
 - package.json
+## Task 06 - Cloud Infrastructure & Monitoring
+
+### Live Deployment
+- **Live URL:** https://multi-stage-docker-app.onrender.com
+- **Health Endpoint:** /health - returns 200 OK
+
+### Architecture
+User -> Nginx (SSL + Reverse Proxy) -> Docker Container (Node.js App) -> Prometheus/Grafana
+
+### Deployment Pipeline
+1. Code push to GitHub main
+2. GitHub Actions: lint -> test -> build Docker
+3. Auto deploy to Render via webhook
+4. UptimeRobot monitors /health every 5 mins
+
+### Monitoring Setup
+- Health check: GET /health
+- Uptime: UptimeRobot (email alerts)
+- Metrics: /metrics endpoint for Prometheus
+- Grafana dashboard for CPU/Memory
+
+### Expected Proof
+GitHub Repo + Live Cloud URL (Render deployment)
